@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+
+<launch>
+
+<node pkg="tf" type="static_transform_publisher" name="map_nav_broadcaster" args="0 0 0 0 0 0 map velodyne 100"/>
+
+<!-- visualize path  -->
+<node pkg="map_server" type="map_server" name="mapploader" args="/home/redwan/catkin_ws/src/map/autoware-20151221_1.rosbag.yaml"/>
+
+<node pkg="traj_saver" type="traj_saver_node" name="traj_saver" args="/home/redwan/catkin_ws/src/map/autoware-20151221_1.rosbag.txt"/>
+
+
+
+
+</launch>
