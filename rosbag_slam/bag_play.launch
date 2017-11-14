@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<!-- ROSBAG play 
+parameter: filename
+ -->
+<launch>
+	 <arg name="filename" /> 
+        <node pkg="rosbag" type="play" name="player" output="screen" args="--clock $(arg filename)"/>
+</launch>

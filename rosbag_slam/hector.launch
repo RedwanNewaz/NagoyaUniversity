@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!-- HECTOR SLAM LAUNCH
+parameter: /points_raw or velodyne_obstacles
+ -->
+<launch>
+	 <arg name="pointclouds" /> 
+	<!-- run hector mapping  -->
+	<include file="$(find hector_mapping)/launch/mapping_default.launch"/>
+<!-- Convert point cloud to laser scanner -->
+    <node pkg="pointcloud_to_laserscan" type="pointcloud_to_laserscan_node" name="s">
+	    <remap from="cloud_in" to="$(arg pointclouds)"/>
+    </node>
+<!-- static tf -->
+    <node pkg="tf" type="static_transform_publisher" name="map_to_base_link"
+    args="0 0  0  0 0 0  /map /base_link  100" />
+        <node pkg="tf" type="static_transform_publisher" name="map_to_velodyne"
+    args="0 0  0  0 0 0   /velodyne /map 100" />
+</launch>
